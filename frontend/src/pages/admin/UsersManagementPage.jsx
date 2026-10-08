@@ -19,6 +19,8 @@ import {
   AlertCircle,
   UserX,
   WifiOff,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 
 export const UsersManagementPage = () => {
@@ -46,6 +48,7 @@ export const UsersManagementPage = () => {
   });
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [feedback, setFeedback] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const fetchUsers = async (page = 1) => {
     try {
@@ -79,6 +82,7 @@ export const UsersManagementPage = () => {
   const openCreateModal = () => {
     setModalMode('CREATE');
     setSelectedUser(null);
+    setShowPassword(false);
     setFormData({
       name: '',
       email: '',
@@ -94,6 +98,7 @@ export const UsersManagementPage = () => {
   const openEditModal = (u) => {
     setModalMode('EDIT');
     setSelectedUser(u);
+    setShowPassword(false);
     setFormData({
       name: u.name,
       email: u.email,
@@ -409,19 +414,30 @@ export const UsersManagementPage = () => {
               <label className="form-label" htmlFor="user-password">
                 {modalMode === 'CREATE' ? 'Initial Password' : 'New Password (Optional)'}
               </label>
-              <input
-                id="user-password"
-                type="password"
-                autoComplete="new-password"
-                aria-describedby="user-password-hint"
-                maxLength={72}
-                required={modalMode === 'CREATE'}
-                minLength={modalMode === 'CREATE' || formData.password ? 8 : undefined}
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                placeholder={modalMode === 'CREATE' ? '••••••••' : 'Leave empty to keep'}
-                className="form-input"
-              />
+              <div className="password-field">
+                <input
+                  id="user-password"
+                  type={showPassword ? 'text' : 'password'}
+                  autoComplete="new-password"
+                  aria-describedby="user-password-hint"
+                  maxLength={72}
+                  required={modalMode === 'CREATE'}
+                  minLength={modalMode === 'CREATE' || formData.password ? 8 : undefined}
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  placeholder={modalMode === 'CREATE' ? '••••••••' : 'Leave empty to keep'}
+                  className="form-input"
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword((shown) => !shown)}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  aria-pressed={showPassword}
+                >
+                  {showPassword ? <EyeOff size={16} aria-hidden="true" /> : <Eye size={16} aria-hidden="true" />}
+                </button>
+              </div>
               <p id="user-password-hint" className="rule-hint-text">At least 8 characters, with a letter and a number</p>
             </div>
           </div>
