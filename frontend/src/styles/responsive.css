@@ -1,0 +1,165 @@
+/* Responsive layout: off-canvas navigation drawer and small-screen adjustments.
+   Loaded last so these rules refine the base styles. */
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 0.625rem;
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+.nav-toggle:hover {
+  background-color: var(--border-light);
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+.page-container {
+  min-width: 0; /* lets wide tables scroll inside their card instead of stretching the page */
+}
+
+/* ---- Desktop: sidebar stays in view while the page scrolls ---- */
+@media (min-width: 1024px) {
+  .sidebar {
+    position: sticky;
+    top: 4rem;
+    align-self: flex-start;
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+}
+
+/* ---- Tablet and below: navigation becomes a drawer ---- */
+@media (max-width: 1023px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .navbar {
+    gap: 0.75rem;
+  }
+
+  .navbar-brand {
+    margin-right: auto;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    bottom: 0;
+    z-index: 40;
+    width: min(18rem, 85vw);
+    min-height: 0;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    transform: translateX(-100%);
+    visibility: hidden; /* closed drawer is not reachable with Tab */
+    transition: transform 0.25s ease, visibility 0s linear 0.25s;
+  }
+
+  .sidebar.sidebar-open {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.25s ease, visibility 0s;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 4rem 0 0 0;
+    z-index: 35;
+    background-color: rgba(15, 23, 42, 0.45);
+  }
+
+  .page-container {
+    padding: 1.25rem;
+  }
+}
+
+/* ---- Phones ---- */
+@media (max-width: 767px) {
+  .navbar {
+    padding: 0 0.75rem;
+  }
+
+  .brand-text p,
+  .user-details {
+    display: none;
+  }
+
+  .user-profile-badge {
+    padding-right: 0.5rem;
+  }
+
+  .page-container {
+    padding: 1rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .toast-viewport {
+    bottom: 1rem;
+    right: 0.75rem;
+    left: 0.75rem;
+    width: auto;
+  }
+}
+
+@media (max-width: 479px) {
+  .btn-logout span,
+  .brand-text {
+    display: none;
+  }
+
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-wrapper {
+    padding: 0.5rem;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .modal-footer button {
+    width: 100%;
+  }
+}
+
+/* Larger touch targets on touch devices */
+@media (pointer: coarse) {
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger,
+  .btn-logout,
+  .form-input,
+  .form-select,
+  .sidebar-nav-link {
+    min-height: 2.75rem;
+  }
+
+  .btn-icon,
+  .btn-action,
+  .btn-approve-action,
+  .btn-reject-action,
+  .modal-close-btn {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+}

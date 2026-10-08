@@ -1,0 +1,71 @@
+/* User Management */
+.user-search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .user-search-bar {
+    flex-direction: row;
+  }
+}
+
+.search-input-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.search-icon-pos {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+}
+
+.user-search-field {
+  padding-left: 2.5rem;
+}
+
+/* Rules Settings Grid */
+.rules-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .rules-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.rule-setting-card {
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background-color: #f8fafc;
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rule-hint-text {
+  font-size: 0.6875rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* Audit Log JSON payload box */
+.json-payload-viewer {
+  padding: 0.75rem;
+  background-color: #0f172a;
+  color: #34d399;
+  border-radius: 0.75rem;
+  font-size: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  overflow-x: auto;
+  max-height: 15rem;
+}

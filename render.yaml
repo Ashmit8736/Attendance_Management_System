@@ -1,0 +1,25 @@
+# Render Blueprint: creates the backend web service.
+# Render dashboard -> New -> Blueprint -> pick this repository.
+services:
+  - type: web
+    name: attendance-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL # paste your Neon / Render Postgres connection string
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN # your Vercel URL, e.g. https://attendance-app.vercel.app
+        sync: false
+      - key: OFFICE_TIMEZONE
+        value: Asia/Kolkata
+      # Show the 1-click demo login buttons (off by default in production)
+      - key: ENABLE_DEMO_LOGIN
+        value: "true"

@@ -1,0 +1,118 @@
+/* Base Badge Styling */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  line-height: 1;
+}
+
+.badge-dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+/* Attendance Status */
+.badge-present {
+  background-color: #ecfdf5;
+  color: #047857;
+  border-color: #a7f3d0;
+}
+.badge-present .badge-dot {
+  background-color: #10b981;
+}
+
+.badge-late {
+  background-color: #fffbeb;
+  color: #b45309;
+  border-color: #fde68a;
+}
+.badge-late .badge-dot {
+  background-color: #f59e0b;
+}
+
+.badge-halfday {
+  background-color: #faf5ff;
+  color: #7e22ce;
+  border-color: #e9d5ff;
+}
+.badge-halfday .badge-dot {
+  background-color: #a855f7;
+}
+
+.badge-absent {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+.badge-absent .badge-dot {
+  background-color: #ef4444;
+}
+
+/* Correction Status */
+.badge-pending {
+  background-color: #fffbeb;
+  color: #b45309;
+  border-color: #fde68a;
+}
+
+.badge-approved {
+  background-color: #ecfdf5;
+  color: #047857;
+  border-color: #a7f3d0;
+}
+
+.badge-rejected {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+/* Role Badges */
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+  line-height: 1.2;
+}
+
+.role-admin {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+  border-color: #e9d5ff;
+}
+
+.role-hr {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.role-employee {
+  background-color: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.badge-corrected-tag {
+  font-size: 0.625rem;
+  background-color: #f1f5f9;
+  color: #475569;
+  font-weight: 700;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  border: 1px solid #e2e8f0;
+  margin-left: 0.375rem;
+}
