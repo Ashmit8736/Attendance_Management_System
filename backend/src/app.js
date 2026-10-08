@@ -21,18 +21,16 @@ const allowedOrigins = env.CORS_ORIGIN.includes(',')
 
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps, curl, Postman)
     if (!origin) return callback(null, true);
     if (allowedOrigins === '*' || allowedOrigins === true) return callback(null, true);
     if (Array.isArray(allowedOrigins) && allowedOrigins.includes(origin)) return callback(null, true);
     if (typeof allowedOrigins === 'string' && allowedOrigins === origin) return callback(null, true);
     
-    // In development or if origin matches localhost
     if (env.NODE_ENV !== 'production' && origin.includes('localhost')) {
       return callback(null, true);
     }
 
-    return callback(null, true); // Permissive callback for ease of deployment
+    return callback(null, true);
   },
   credentials: true,
 };
@@ -46,6 +44,22 @@ app.use(express.urlencoded({ extended: true }));
 if (env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
+
+// Root Welcome Endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'ONLINE',
+    service: 'AttendTrack Attendance Management API',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      api_base: '/api',
+      login: '/api/auth/login',
+      demo_credentials: '/api/auth/demo-credentials',
+    },
+    message: 'Backend server is running live 🚀',
+  });
+});
 
 // Health Check
 app.get('/health', (req, res) => {
