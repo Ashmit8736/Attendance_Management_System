@@ -37,17 +37,17 @@ module.exports = {
   // Pre-configured role accounts from environment
   SEED_USERS: {
     ADMIN: {
-      name: process.env.ADMIN_NAME || 'Alex Administrator',
+      name: process.env.ADMIN_NAME || 'Ashmit Singh',
       email: process.env.ADMIN_EMAIL || 'admin@company.com',
       password: process.env.ADMIN_PASSWORD || 'Admin@123',
     },
     HR: {
-      name: process.env.HR_NAME || 'Sarah Jenkins',
+      name: process.env.HR_NAME || 'Akash Singh',
       email: process.env.HR_EMAIL || 'hr@company.com',
       password: process.env.HR_PASSWORD || 'Hr@123',
     },
     EMPLOYEE: {
-      name: process.env.EMPLOYEE_NAME || 'John Doe',
+      name: process.env.EMPLOYEE_NAME || 'Aman Kumar',
       email: process.env.EMPLOYEE_EMAIL || 'employee@company.com',
       password: process.env.EMPLOYEE_PASSWORD || 'Emp@123',
     },
