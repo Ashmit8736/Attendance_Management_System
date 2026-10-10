@@ -34,22 +34,22 @@ module.exports = {
   ENABLE_DEMO_LOGIN: (process.env.ENABLE_DEMO_LOGIN || (process.env.NODE_ENV === 'production' ? 'false' : 'true')) === 'true',
   CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:5173',
 
-  // Pre-configured role accounts from environment
+  // Pre-configured role accounts loaded directly from environment (.env)
   SEED_USERS: {
     ADMIN: {
-      name: process.env.ADMIN_NAME || 'Ashmit Singh',
-      email: process.env.ADMIN_EMAIL || 'admin@company.com',
-      password: process.env.ADMIN_PASSWORD || 'Admin@123',
+      name: process.env.ADMIN_NAME,
+      email: process.env.ADMIN_EMAIL,
+      password: process.env.ADMIN_PASSWORD,
     },
     HR: {
-      name: process.env.HR_NAME || 'Akash Singh',
-      email: process.env.HR_EMAIL || 'hr@company.com',
-      password: process.env.HR_PASSWORD || 'Hr@123',
+      name: process.env.HR_NAME,
+      email: process.env.HR_EMAIL,
+      password: process.env.HR_PASSWORD,
     },
     EMPLOYEE: {
-      name: process.env.EMPLOYEE_NAME || 'Aman Kumar',
-      email: process.env.EMPLOYEE_EMAIL || 'employee@company.com',
-      password: process.env.EMPLOYEE_PASSWORD || 'Emp@123',
+      name: process.env.EMPLOYEE_NAME,
+      email: process.env.EMPLOYEE_EMAIL,
+      password: process.env.EMPLOYEE_PASSWORD,
     },
   },
 };
