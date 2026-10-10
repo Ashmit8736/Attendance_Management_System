@@ -104,7 +104,7 @@ Authorization is enforced **on the backend**; the frontend only hides what a rol
 | View organisation attendance / all corrections | ❌ | ✅ | ✅ |
 | Approve / reject corrections | ❌ | ✅ | ✅ |
 | View user directory | ❌ | ✅ | ✅ |
-| Create / edit / (de)activate users and roles | ❌ | ❌ | ✅ |
+| Create / edit / (de)activate users and roles | ❌ | ✅ | ✅ |
 | Edit attendance rules | ❌ | ❌ | ✅ |
 | View audit logs | ❌ | ❌ | ✅ |
 
