@@ -75,7 +75,7 @@ describe('role-based access (enforced by the backend)', () => {
     ['get', '/api/users', 'EMPLOYEE', 403],
     ['get', '/api/users', 'HR', 200],
     ['get', '/api/users', 'ADMIN', 200],
-    ['post', '/api/users', 'HR', 403],
+    ['post', '/api/users', 'EMPLOYEE', 403],
     ['put', '/api/users/1', 'HR', 403],
     ['patch', '/api/users/1/toggle-status', 'HR', 403],
     ['put', '/api/rules', 'HR', 403],
@@ -93,6 +93,19 @@ describe('role-based access (enforced by the backend)', () => {
       assert.equal(res.status, expected);
     });
   }
+
+  test('HR cannot create an ADMIN user (returns 403)', async () => {
+    const res = await request(app)
+      .post('/api/users')
+      .set(as('HR'))
+      .send({
+        name: 'Forbidden Admin',
+        email: 'forbidden.admin@company.com',
+        password: 'Password123!',
+        role: 'ADMIN',
+      });
+    assert.equal(res.status, 403);
+  });
 });
 
 describe('data scoping', () => {

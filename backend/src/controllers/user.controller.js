@@ -1,5 +1,6 @@
 const UserService = require('../services/user.service');
 const { successResponse } = require('../utils/apiResponse');
+const AppError = require('../errors/AppError');
 
 class UserController {
   static async getAllUsers(req, res, next) {
@@ -20,8 +21,16 @@ class UserController {
 
   static async createUser(req, res, next) {
     try {
-      const { name, email, password, role, designation, department } = req.body;
+      let { name, email, password, role, designation, department } = req.body;
       const ipAddress = req.ip || req.connection.remoteAddress;
+
+      // HR can only create users with the EMPLOYEE role
+      if (req.user.role === 'HR') {
+        if (role && role !== 'EMPLOYEE') {
+          throw AppError.forbidden('HR can only create users with the EMPLOYEE role.');
+        }
+        role = 'EMPLOYEE';
+      }
 
       const newUser = await UserService.createUser(
         { name, email, password, role, designation, department },

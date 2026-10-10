@@ -169,7 +169,7 @@ export const UsersManagementPage = () => {
           </p>
         </div>
 
-        {isAdmin && (
+        {isAdmin ? (
           <button
             onClick={openCreateModal}
             className="btn-primary"
@@ -177,7 +177,15 @@ export const UsersManagementPage = () => {
             <UserPlus size={16} />
             <span>Add New User</span>
           </button>
-        )}
+        ) : currentUser?.role === 'HR' ? (
+          <button
+            onClick={openCreateModal}
+            className="btn-primary"
+          >
+            <UserPlus size={16} />
+            <span>Add Employee</span>
+          </button>
+        ) : null}
       </div>
 
       {/* Filter / Search Bar */}
@@ -316,7 +324,13 @@ export const UsersManagementPage = () => {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={modalMode === 'CREATE' ? 'Add New Organization Member' : `Edit ${selectedUser?.name}`}
+        title={
+          modalMode === 'CREATE'
+            ? isAdmin
+              ? 'Add New Organization Member'
+              : 'Add New Employee'
+            : `Edit ${selectedUser?.name}`
+        }
       >
         <form onSubmit={handleFormSubmit} className="stack-md">
           {feedback && (
@@ -371,11 +385,17 @@ export const UsersManagementPage = () => {
                 value={formData.role}
                 onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                 className="form-select"
+                disabled={!isAdmin && currentUser?.role === 'HR'}
               >
                 <option value="EMPLOYEE">Employee</option>
-                <option value="HR">HR Manager</option>
-                <option value="ADMIN">System Admin</option>
+                {isAdmin && <option value="HR">HR Manager</option>}
+                {isAdmin && <option value="ADMIN">System Admin</option>}
               </select>
+              {!isAdmin && currentUser?.role === 'HR' && (
+                <p style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '0.3rem' }}>
+                  HR can only create Employee accounts.
+                </p>
+              )}
             </div>
 
             <div>
